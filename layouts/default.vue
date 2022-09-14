@@ -8,9 +8,7 @@
 </template>
 
 <script setup lang="ts">
-
+useHead({
+  title: 'Digital Drums'
+})
 </script>
-
-<style scoped>
-
-</style>
