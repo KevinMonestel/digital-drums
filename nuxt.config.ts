@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     configFile: './formkit.config.ts'
   },
   colorMode: {
-    classSuffix: ''
+    classSuffix: '',
+    preference: 'dark'
   }
 })

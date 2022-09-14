@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <slot></slot>
+  <div class="text-gray-700 dark:text-white">
+    <LayoutHeader />
+    <LayoutMainContent>
+      <slot></slot>
+    </LayoutMainContent>
   </div>
 </template>
 
