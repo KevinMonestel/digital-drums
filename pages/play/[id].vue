@@ -5,6 +5,10 @@
 </template>
 
 <script setup lang="ts">
-  const route = useRoute()
+const route = useRoute()
+
+definePageMeta({
+  middleware: ['auth']
+})
 
 </script>
