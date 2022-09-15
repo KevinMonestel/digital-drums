@@ -13,7 +13,8 @@
 
     <div v-else>
       <button @click="showModal = true"
-        class="p-2 mb-5 bg-gray-800 rounded hover:bg-gray-600 text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-600">Create new set
+        class="p-2 mb-5 bg-gray-800 rounded hover:bg-gray-600 text-white dark:bg-gray-800 dark:text-white dark:hover:bg-gray-600">Create
+        new set
       </button>
       <div class="border-b border-b-gray-300 mb-5 dark:border-b-gray-500"></div>
       <div>
@@ -23,10 +24,13 @@
               {{drumSet.name}}
             </p>
             <p class="px-2 py-3 text-right text-gray-500">
-              <Icon class="mr-2 cursor-pointer" name="icomoon-free:forward" />
-              <Icon class="mr-2 cursor-pointer" name="icomoon-free:cog" />
+              <NuxtLink :href="`/play/${drumSet.id}`">
+                <Icon class="mr-2 cursor-pointer" name="icomoon-free:forward" />
+              </NuxtLink>
+              <NuxtLink :href="`/sets/conf/${drumSet.id}`">
+                <Icon class="mr-2 cursor-pointer" name="icomoon-free:cog" />
+              </NuxtLink>
               <Icon class="cursor-pointer" name="icomoon-free:bin" />
-
             </p>
           </div>
         </div>
@@ -34,10 +38,10 @@
     </div>
 
     <vue-final-modal v-model="showModal" classes="flex justify-end"
-      content-class="min-w-[40%] md:min-w-[400px] inline-block text-gray-800 rounded px-2 py-2 shadow-xl bg-white dark:shadow-none dark:text-white dark:bg-gray-900">
+      content-class="min-w-[70%] max-w-[60%] md:min-w-[400px] inline-block text-gray-800 rounded px-2 py-2 shadow-xl bg-white dark:shadow-none dark:text-white dark:bg-gray-900">
       <p class="text-center">Create a new set</p>
       <p>
-        <FormsCreateSet v-on:add-set-emit="addSetEmit"/>
+        <FormsCreateSet v-on:add-set-emit="addSetEmit" />
       </p>
     </vue-final-modal>
   </div>
