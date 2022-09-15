@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <FormKit type="form" @submit="handleSignup" submit-label="Register">
-      <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
-        validation="required" placeholder="example@example.com" />
-      <FormKit type="password" name="password" label="Password" help="Please enter your password" validation="required"
-        placeholder="******" />
-    </FormKit>
+  <div class="flex justify-center">
+    <div class="w-96 pt-10 md:pt-20">
+      <FormKit type="form" @submit="handleSignup" submit-label="Register">
+        <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
+          validation="required" placeholder="example@example.com" />
+        <FormKit type="password" name="password" label="Password" help="Please enter your password"
+          validation="required" placeholder="******" />
+      </FormKit>
+    </div>
   </div>
 </template>
 

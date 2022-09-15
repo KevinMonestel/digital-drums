@@ -15,7 +15,13 @@
               <UiThemeSelector />
             </li>
             <li>
-              <NuxtLink href="/play/1">Play!</NuxtLink>
+              <NuxtLink class="underline-light-400" href="/play/1">Let's Play!</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink href="/auth/signin">Log in</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink href="/auth/signup">Register</NuxtLink>
             </li>
           </ul>
         </nav>

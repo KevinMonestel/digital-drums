@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <FormKit type="form" @submit="handleSignin" submit-label="Sign in" >
-      <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
-        validation="required" placeholder="example@example.com" />
-      <FormKit type="password" name="password" label="Password" help="Please enter your password" validation="required"
-        placeholder="******" />
-      <NuxtLink href="/auth/recover" class="text-sm text-blue-400">Recover password</NuxtLink>
-    </FormKit>
+  <div class="flex justify-center">
+    <div class="w-96 pt-10 md:pt-20">
+      <FormKit type="form" @submit="handleSignin" submit-label="Sign in">
+        <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
+          validation="required" placeholder="example@example.com" />
+        <FormKit type="password" name="password" label="Password" help="Please enter your password"
+          validation="required" placeholder="******" />
+        <NuxtLink href="/auth/recover" class="text-sm text-blue-400">Recover password</NuxtLink>
+      </FormKit>
+    </div>
   </div>
 </template>
 
