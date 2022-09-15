@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-gray-50 dark:bg-gray-800">
+  <header class="sticky top-0 right-0 left-0 bg-gray-50 shadow-lg dark:shadow-none dark:bg-gray-800">
     <div class="h-[50px] container flex justify-between items-center">
       <div>
         <NuxtLink class="flex items-center justify-center" href="/">
@@ -15,7 +15,10 @@
               <UiThemeSelector />
             </li>
             <li>
-              <NuxtLink class="underline-light-400" href="/play/1">Let's Play!</NuxtLink>
+              <NuxtLink class="underline-light-400" href="/sets">
+                <span v-if="!user">Let's Play!</span>
+                <span v-else>My sets</span>
+              </NuxtLink>
             </li>
             <li v-if="!user">
               <NuxtLink href="/auth/signin">Log in</NuxtLink>

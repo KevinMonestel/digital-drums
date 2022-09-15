@@ -5,7 +5,7 @@
         <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
           validation="required" placeholder="example@example.com" />
         <FormKit type="password" name="password" label="Password" help="Please enter your password"
-          validation="required" placeholder="******" />
+          validation="required" placeholder="******"/>
         <NuxtLink href="/auth/recover" class="text-sm text-blue-400">Recover password</NuxtLink>
       </FormKit>
     </div>
