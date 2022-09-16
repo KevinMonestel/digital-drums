@@ -8,7 +8,7 @@
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
         class="drum-element">
         <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
-          <img :src="drumPart.image_url" v-on:click="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)"/>
+          <img :src="drumPart.image_url" @touchstart="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)"/>
         </div>
       </div>
     </div>{{pageLoaded}}c
