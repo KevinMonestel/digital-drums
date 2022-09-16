@@ -8,7 +8,7 @@
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
         class="drum-element">
         <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
-          <img :src="drumPart.image_url" v-on:click="playDrumSound('KeyM')"/>
+          <img :src="drumPart.image_url" v-on:click="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)"/>
         </div>
       </div>
     </div>{{pageLoaded}}c
@@ -55,6 +55,8 @@ let preloader: Howl = new Howl({
   preload: true,
   volume: 1
 })
+
+preloader.load()
 
 const keyboardAction = (e: KeyboardEvent) => {
   playDrumSound(e.code)
