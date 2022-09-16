@@ -6,11 +6,10 @@
     </UiAlertMsg>
     <LayoutDrumSetContainer v-else>
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
-        class="drum-element bg-red-400 border">
-        <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0"
-          @touchstart="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)">
-          <img :src="drumPart.image_url" />
-        </div>
+        class="drum-element flex items-center justify-center"
+        @touchstart="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code, false)">
+        <img v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0"
+          :src="drumPart.image_url" />
       </div>
     </LayoutDrumSetContainer>
   </div>
@@ -52,18 +51,18 @@ drumSetsConfigurationsSounds = [...new Set(drumSetsConfigurations.value.map(item
 
 let preloader: Howl = new Howl({
   src: drumSetsConfigurationsSounds,
-  autoplay: true,
+  autoplay: false,
   preload: true,
   volume: 0
 })
 
-preloader.load()
+preloader.unload()
 
 const keyboardAction = (e: KeyboardEvent) => {
-  playDrumSound(e.code)
+  playDrumSound(e.code, true)
 }
 
-const playDrumSound = (keywordCode: string) => {
+const playDrumSound = (keywordCode: string, changeStyle: boolean) => {
   let drumSetConfiguration: DrumConfigurationType = drumSetsConfigurations.value.filter(
     (x) => x.keyword_code.toLowerCase() === keywordCode.toLowerCase()
   )[0];
@@ -73,9 +72,10 @@ const playDrumSound = (keywordCode: string) => {
       (x) => x.id === drumSetConfiguration.drum_part_id
     )[0];
 
-    document.querySelector(`#drum-part-${drumPart.base_name}`).classList.add('scale-105')
+    if (changeStyle)
+      document.querySelector(`#drum-part-${drumPart.base_name}`).classList.add('scale-105')
 
-    new Howl({
+      let sound: Howl = new Howl({
       src: drumSetConfiguration.sound_url,
       autoplay: true,
       preload: true,
