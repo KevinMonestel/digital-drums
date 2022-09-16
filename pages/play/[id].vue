@@ -8,7 +8,7 @@
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
         class="drum-element">
         <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
-          <img :src="drumPart.image_url" />
+          <img :src="drumPart.image_url" v-on:click="playDrumSound('KeyM')"/>
         </div>
       </div>
     </div>{{pageLoaded}}c
@@ -53,12 +53,16 @@ let preloader: Howl = new Howl({
   src: drumSetsConfigurationsSounds,
   autoplay: true,
   preload: true,
-  volume: 0
+  volume: 1
 })
 
-const KeyboardAction = (e: KeyboardEvent) => {
+const keyboardAction = (e: KeyboardEvent) => {
+  playDrumSound(e.code)
+}
+
+const playDrumSound = (keywordCode: string) => {
   let drumSetConfiguration: DrumConfigurationType = drumSetsConfigurations.value.filter(
-    (x) => x.keyword_code.toLowerCase() === e.code.toLowerCase()
+    (x) => x.keyword_code.toLowerCase() === keywordCode.toLowerCase()
   )[0];
 
   if (drumSetConfiguration) {
@@ -77,7 +81,7 @@ const KeyboardAction = (e: KeyboardEvent) => {
   }
 }
 
-const KeyboardUpAction = () => {
+const keyboardUpAction = () => {
   let elements = document.querySelectorAll(".drum-element")
 
   elements.forEach((x) => {
@@ -88,12 +92,12 @@ const KeyboardUpAction = () => {
 pageLoaded.value = true
 
 onMounted(() => {
-  window.addEventListener("keydown", KeyboardAction)
-  window.addEventListener("keyup", KeyboardUpAction)
+  window.addEventListener("keydown", keyboardAction)
+  window.addEventListener("keyup", keyboardUpAction)
 })
 
 onUnmounted(() => {
-  window.removeEventListener("keydown", KeyboardAction)
-  window.removeEventListener("keyup", KeyboardUpAction)
+  window.removeEventListener("keydown", keyboardAction)
+  window.removeEventListener("keyup", keyboardUpAction)
 })
 </script>
