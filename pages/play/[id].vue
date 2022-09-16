@@ -1,30 +1,43 @@
 <template>
-  <div class="pt-5">
+  <div>
+    <img src="~/assets/images/snare.png" id="snare"/>
     {{route.params.id}}
   </div>
 </template>
 
 <script setup lang="ts">
-import { Howl, Howler } from 'howler';
+import { Howl, Howler } from 'howler'
+import DrumConfigurationType from '~~/types/digital-drums/drumConfiguration'
 
+const client = useSupabaseClient()
 const route = useRoute()
 
 definePageMeta({
   middleware: ['auth']
 })
 
-const KeyboardAction = (e: KeyboardEvent) => {
-  alert(e.code)
+const { data } = await useAsyncData('drum_set_configurations', async () => {
+  const { data } = await client.from<DrumConfigurationType>('drum_set_configurations').select('*').eq('drum_set_id', parseInt(route.params.id.toString())).order('created_at')
 
-  var sound = new Howl({
-    src: 'https://ugzbntbdlbdgmifxklgk.supabase.co/storage/v1/object/sign/drum-sets/default/bass.wav?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJkcnVtLXNldHMvZGVmYXVsdC9iYXNzLndhdiIsImlhdCI6MTY2MzI3MTE3MiwiZXhwIjoxOTc4NjMxMTcyfQ.6wBITEmbipX2pe0iZ53EAHhFOTyRdMjgA3lpP4bWKH4',
-    autoplay: true,
-    loop: false,
-    volume: 0.5,
-    onend: function () {
-      console.log('Finished!');
-    }
-  });
+  return data
+})
+
+const KeyboardAction = (e: KeyboardEvent) => {
+  let keyboardAction: DrumConfigurationType = data.value.filter(
+    (x) => x.keyword_code.toLowerCase() === e.code.toLowerCase()
+  )[0];
+
+  if (keyboardAction) {
+    var sound = new Howl({
+      src: keyboardAction.sound_url,
+      autoplay: true,
+      loop: false,
+      volume: keyboardAction.volume,
+      onend: function () {
+        console.log('Finished!');
+      }
+    })
+  }
 }
 
 onMounted(() => {

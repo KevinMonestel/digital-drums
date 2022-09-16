@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center">
     <div class="w-96 pt-10 md:pt-20">
-      <div v-if="registered" class="bg-green-200 rounded py-2 px-3 border border-green-300 text-green-800 mb-4">
+      <UiSuccessMsg v-if="registered">
         You have been registered successfully. Please, confirm your password.
-      </div>
+      </UiSuccessMsg>
 
       <FormKit type="form" @submit="handleSignup" submit-label="Register" id="signup-form">
         <FormKit type="email" name="email" label="Email address" help="Please enter your email address"

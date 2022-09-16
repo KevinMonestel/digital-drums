@@ -9,6 +9,6 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Digital Drums'
+  title: 'Digital Drum'
 })
 </script>

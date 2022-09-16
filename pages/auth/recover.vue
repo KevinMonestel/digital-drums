@@ -6,9 +6,9 @@
           validation="required" />
       </FormKit>
 
-      <div v-if="wasSent" class="bg-green-200 rounded py-5 px-2 border border-green-300 text-green-600">
+      <UiSuccessMsg v-if="wasSent">
         An email was sent to your account if you are registered. Please, verify and reset your password.
-      </div>
+      </UiSuccessMsg>
     </div>
   </div>
 </template>

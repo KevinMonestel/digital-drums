@@ -1,6 +1,11 @@
 <template>
   <div>
     <UiPageTitle>My sets</UiPageTitle>
+
+    <UiSuccessMsg v-if="showSuccessMessage">
+      The drum set has been created successfully.
+     </UiSuccessMsg>
+
     <div v-if="drumSets.length === 0" class="text-center text-gray-400">
       <Icon name="icomoon-free:info" /> Seems like you don't have any sets created yet. Create
       <button @click="showModal = true"
@@ -51,6 +56,7 @@
 import DrumSetType from '~~/types/digital-drums/drumSet';
 
 const showModal = ref(false)
+const showSuccessMessage = ref(false)
 
 definePageMeta({
   middleware: ['auth']
@@ -71,5 +77,6 @@ const addSetEmit = (drumSet: DrumSetType) => {
   drumSets.value.push(drumSet)
 
   showModal.value = false
+  showSuccessMessage.value = true
 }
 </script>

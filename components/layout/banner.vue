@@ -6,7 +6,7 @@
     <p class="flex items-center">
       <Icon name="icomoon-free:equalizer" size="4em" />
       <span class="text-2xl ml-2">
-        Digital Drums
+        Digital Drum
       </span>
     </p>
     <h1 class="text-3xl text-center mt-2 mb-5">The sound of a real drum set... <br>

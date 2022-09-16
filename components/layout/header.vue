@@ -4,7 +4,7 @@
       <div>
         <NuxtLink class="flex items-center justify-center" href="/">
           <Icon name="icomoon-free:equalizer" size="2em" />
-          <p class="hidden md:block md:ml-2">Digital Drums</p>
+          <p class="hidden md:block md:ml-2">Digital Drum</p>
         </NuxtLink>
       </div>
 

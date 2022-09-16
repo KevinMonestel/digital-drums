@@ -10,8 +10,9 @@
 
 <script setup lang="ts">
 import { reset } from '@formkit/core';
-import { date } from '@formkit/i18n';
 import DrumSetType from '~~/types/digital-drums/drumSet';
+import defaultTheme   from '~~/assets/drums-themes/default'
+import DrumConfigurationType from '~~/types/digital-drums/drumConfiguration';
 
 const client = useSupabaseClient()
 const user = useSupabaseUser()
@@ -27,10 +28,25 @@ const handleSubmit = async (formData: DrumSetType) => {
     user_id: formData.user_id
   })
 
-  if (error) throw error
-
-  await emits('addSetEmit', data[0])
-
   reset('create-set-form')
+
+  if (error){
+    throw error
+    return alert(error.details)
+  }
+
+  let drumSetAdded: DrumSetType = data[0];
+  
+  if(formData.use_default){
+    let defaultThemeConfigJson: string = JSON.stringify(defaultTheme)
+    let defaultThemeConfig: DrumConfigurationType[] = JSON.parse(defaultThemeConfigJson)
+
+    defaultThemeConfig = defaultThemeConfig.map((obj, i) => ({ ...obj, drum_set_id: drumSetAdded.id }));
+
+    const { data, error } = await client.from<DrumConfigurationType[]>('drum_set_configurations').insert(defaultThemeConfig)
+
+    if (error) throw error
+    else await emits('addSetEmit', drumSetAdded)
+  }
 }
 </script>
