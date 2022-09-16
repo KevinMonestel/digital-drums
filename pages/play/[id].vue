@@ -8,10 +8,10 @@
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
         class="drum-element">
         <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
-          <img :src="`/assets/images/${drumPart.base_name}.svg`" />
+          <img :src="drumPart.image_url" />
         </div>
       </div>
-    </div>{{pageLoaded}}
+    </div>{{pageLoaded}}c
   </div>
 </template>
 
@@ -55,8 +55,6 @@ let preloader: Howl = new Howl({
   preload: true,
   volume: 0
 })
-
-preloader.play()
 
 const KeyboardAction = (e: KeyboardEvent) => {
   let drumSetConfiguration: DrumConfigurationType = drumSetsConfigurations.value.filter(
