@@ -4,14 +4,15 @@
     <UiAlertMsg v-if="drumSetsConfigurations.length === 0">
       This set does not have any configuration added.
     </UiAlertMsg>
-    <div v-else class="grid grid-cols-5">
+    <LayoutDrumSetContainer v-else>
       <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
-        class="drum-element">
-        <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
-          <img :src="drumPart.image_url" @touchstart="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)"/>
+        class="drum-element bg-red-400 border">
+        <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0"
+          @touchstart="playDrumSound(drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id)[0].keyword_code)">
+          <img :src="drumPart.image_url" />
         </div>
       </div>
-    </div>{{pageLoaded}}c
+    </LayoutDrumSetContainer>
   </div>
 </template>
 
@@ -53,7 +54,7 @@ let preloader: Howl = new Howl({
   src: drumSetsConfigurationsSounds,
   autoplay: true,
   preload: true,
-  volume: 1
+  volume: 0
 })
 
 preloader.load()
