@@ -5,18 +5,22 @@
       This set does not have any configuration added.
     </UiAlertMsg>
     <div v-else class="grid grid-cols-5">
-      <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`" class="drum-element">
-        <img :src="`/assets/images/${drumPart.base_name}.svg`" id="snare" />
+      <div v-for="drumPart in drumPartsDistinc" v-on:key="drumPart.id" :id="`drum-part-${drumPart.base_name}`"
+        class="drum-element">
+        <div v-if="drumSetsConfigurations.filter(x => x.drum_part_id === drumPart.id).length !== 0">
+          <img :src="`/assets/images/${drumPart.base_name}.svg`" />
+        </div>
       </div>
-    </div>
+    </div>{{pageLoaded}}
   </div>
 </template>
 
 <script setup lang="ts">
-import { Howl, Howler } from 'howler'
+import { Howl } from 'howler'
 import DrumConfigurationType from '~~/types/digital-drums/drumConfiguration'
 import DrumPartsType from '~~/types/digital-drums/drumParts';
 
+const pageLoaded = ref(false)
 const client = useSupabaseClient()
 const route = useRoute()
 
@@ -37,9 +41,20 @@ const { data: drumParts } = await useAsyncData('drum_parts', async () => {
 })
 
 let drumPartsDistinc: DrumPartsType[] = []
+let drumSetsConfigurationsSounds: string[] = []
 
 drumPartsDistinc = [...new Map(drumParts.value.map(item =>
   [item['base_name'], item])).values()]
+
+drumSetsConfigurationsSounds = [...new Set(drumSetsConfigurations.value.map(item =>
+  item['sound_url']))]
+
+let preloader: Howl = new Howl({
+  src: drumSetsConfigurationsSounds,
+  autoplay: true,
+  preload: true,
+  volume: 0
+})
 
 const KeyboardAction = (e: KeyboardEvent) => {
   let drumSetConfiguration: DrumConfigurationType = drumSetsConfigurations.value.filter(
@@ -56,29 +71,29 @@ const KeyboardAction = (e: KeyboardEvent) => {
     new Howl({
       src: drumSetConfiguration.sound_url,
       autoplay: true,
-      loop: false,
-      volume: drumSetConfiguration.volume,
-      onend: function () {
-        console.log('Finished!');
-      }
+      preload: true,
+      volume: drumSetConfiguration.volume
     })
   }
 }
 
 const KeyboardUpAction = () => {
-  let elements = document.querySelectorAll(".drum-element");
-      elements.forEach((x) => {
-        x.classList.remove("scale-105");
-      });
+  let elements = document.querySelectorAll(".drum-element")
+
+  elements.forEach((x) => {
+    x.classList.remove("scale-105")
+  })
 }
 
+pageLoaded.value = true
+
 onMounted(() => {
-  window.addEventListener("keydown", KeyboardAction);
-  window.addEventListener("keyup", KeyboardUpAction);
+  window.addEventListener("keydown", KeyboardAction)
+  window.addEventListener("keyup", KeyboardUpAction)
 })
 
 onUnmounted(() => {
-  window.removeEventListener("keydown", KeyboardAction);
-  window.removeEventListener("keyup", KeyboardUpAction);
+  window.removeEventListener("keydown", KeyboardAction)
+  window.removeEventListener("keyup", KeyboardUpAction)
 })
 </script>
