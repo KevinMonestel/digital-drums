@@ -56,6 +56,8 @@ let preloader: Howl = new Howl({
   volume: 0
 })
 
+preloader.play()
+
 const KeyboardAction = (e: KeyboardEvent) => {
   let drumSetConfiguration: DrumConfigurationType = drumSetsConfigurations.value.filter(
     (x) => x.keyword_code.toLowerCase() === e.code.toLowerCase()
