@@ -5,7 +5,7 @@
     </p>
     <p class="flex items-center">
       <Icon name="icomoon-free:equalizer" size="4em" />
-      <span class="text-1xl md:text-2xl ml-2">
+      <span class="text-2xl ml-2">
         Digital Drum
       </span>
     </p>
