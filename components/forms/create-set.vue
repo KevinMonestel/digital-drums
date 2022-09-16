@@ -43,7 +43,7 @@ const handleSubmit = async (formData: DrumSetType) => {
 
     defaultThemeConfig = defaultThemeConfig.map((obj, i) => ({ ...obj, drum_set_id: drumSetAdded.id }));
 
-    const { data, error } = await client.from<DrumConfigurationType[]>('drum_set_configurations').insert(defaultThemeConfig)
+    const { data, error } = await client.from<DrumConfigurationType[]>('drum_set_configs').insert(defaultThemeConfig)
 
     if (error) throw error
     else await emits('addSetEmit', drumSetAdded)

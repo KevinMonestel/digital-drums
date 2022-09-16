@@ -28,11 +28,16 @@ definePageMeta({
   middleware: ['auth']
 })
 
-const { data: drumSetsConfigurations } = await useAsyncData('drum_set_configurations', async () => {
-  const { data } = await client.from<DrumConfigurationType>('drum_set_configurations').select('*').eq('drum_set_id', parseInt(route.params.id.toString())).order('created_at')
+console.log(route.params.id.toString())
+
+const { data: drumSetsConfigurations } = await useAsyncData('drum_set_configs', async () => {
+  const { data } = await client.from<DrumConfigurationType>('drum_set_configs').select('*').eq('drum_set_id', route.params.id.toString()).order('created_at')
 
   return data
 })
+
+console.log(drumSetsConfigurations.value)
+
 
 const { data: drumParts } = await useAsyncData('drum_parts', async () => {
   const { data } = await client.from<DrumPartsType>('drum_parts').select('*')

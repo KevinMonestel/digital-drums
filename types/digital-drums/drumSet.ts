@@ -1,5 +1,5 @@
 export default interface DrumSetType{
-  id: number,
+  id: string,
   name: string,
   user_id: string,
   use_default: boolean,
