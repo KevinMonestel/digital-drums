@@ -1,10 +1,10 @@
 <template>
-  <div class="text-gray-700 dark:text-white">
+  <LayoutMainLayout>
     <LayoutHeader />
     <LayoutMainContent>
       <slot></slot>
     </LayoutMainContent>
-  </div>
+  </LayoutMainLayout>
 </template>
 
 <script setup lang="ts">

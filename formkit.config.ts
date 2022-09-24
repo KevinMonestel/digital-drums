@@ -13,7 +13,7 @@ const textClassification = {
     focus-within:border-blue-500
   `,
   input:
-    'w-full h-10 px-3 border-none text-base text-gray-700 placeholder-gray-400 dark:bg-gray-600 dark:text-white',
+    'w-full h-10 px-3 border-none text-base text-zinc-700 placeholder-gray-400 bg-zinc-50 dark:bg-zinc-600 dark:text-zinc-200',
     help: 'mb-2 text-sm text-gray-500',
 }
 
@@ -23,14 +23,14 @@ const boxClassification = {
   wrapper: 'flex items-center mb-1 cursor-pointer',
   help: 'mb-2 text-xs',
   input:
-    'form-check-input appearance-none h-5 w-5 mr-2 border border-gray-500 rounded-sm bg-white checked:bg-gray-500 focus:outline-none focus:ring-0 transition duration-200',
+    'form-check-input appearance-none h-5 w-5 mr-2 border border-gray-500 rounded-sm bg-zinc-200 checked:bg-zinc-600 focus:outline-none focus:ring-0 transition duration-200',
   label: 'text-xs text-gray-400 mt-1',
 }
 
 const buttonClassification = {
   wrapper: 'my-3',
   input:
-    'bg-gray-800 hover:bg-gray-600 text-white font-normal py-3 px-5 rounded',
+    'w-full bg-zinc-900 hover:bg-zinc-700 text-zinc-200 font-normal py-3 px-5 rounded transition-colors',
 }
 
 const config: DefaultConfigOptions = {

@@ -5,6 +5,11 @@
         You have been registered successfully. Please, confirm your password.
       </UiSuccessMsg>
 
+      <div class="mb-5 text-center">
+        <h1 class="text-xl">Create a new account.</h1>
+        <small class="text-md">Create your account to start creating your own sets.</small>
+      </div>
+
       <FormKit type="form" @submit="handleSignup" submit-label="Register" id="signup-form">
         <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
           validation="required" placeholder="example@example.com" />

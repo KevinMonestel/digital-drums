@@ -1,6 +1,6 @@
 <template>
-  <main class="dark:bg-gray-700">
-    <div class="min-h-[calc(100vh-50px)] container pt-5">
+  <main class="text-zinc-600 bg-zinc-100 dark:text-zinc-300 dark:bg-zinc-800">
+    <div class="container">
       <slot>
 
       </slot>

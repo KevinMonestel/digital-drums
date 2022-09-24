@@ -1,38 +1,36 @@
 <template>
-  <header class="sticky top-0 right-0 left-0 bg-gray-50 shadow-lg dark:shadow-none dark:bg-gray-800">
-    <div class="h-[50px] container flex justify-between items-center">
-      <div>
-        <NuxtLink class="flex items-center justify-center" href="/">
+  <header class="bg-zinc-900 text-zinc-300">
+    <div class="h-[80px] py-5">
+      <NuxtLink class="flex flex-col items-center" href="/">
           <Icon name="icomoon-free:equalizer" size="2em" />
-          <p class="hidden md:block md:ml-2">Digital Drum</p>
+          <p class="hidden md:block">Digital Drum</p>
         </NuxtLink>
-      </div>
+    </div>
 
-      <div>
-        <nav>
-          <ul class="flex items-center">
-            <li>
+    <div class="h-[calc(100%-81px)] flex flex-col items-center justify-center border-b border-t border-zinc-600">
+      <nav class="w-full">
+          <ul class="flex flex-col items-center">
+            <li class="w-full flex h-[50px] flex items-center justify-center hover:bg-zinc-800 transition-colors">
               <UiThemeSelector />
             </li>
-            <li>
-              <NuxtLink class="underline-light-400" href="/sets">
+            <li class="w-full hover:bg-zinc-800 transition-colors">
+              <NuxtLink href="/sets" class="w-full h-[50px] flex items-center justify-center">
                 <span v-if="!user">Let's Play!</span>
                 <span v-else>My sets</span>
               </NuxtLink>
             </li>
-            <li v-if="!user">
-              <NuxtLink href="/auth/signin">Log in</NuxtLink>
+            <li v-if="!user" class="w-full hover:bg-zinc-800 transition-colors">
+              <NuxtLink href="/auth/signin" class="w-full h-[50px] flex items-center justify-center">Log in</NuxtLink>
             </li>
-            <li v-if="!user">
-              <NuxtLink href="/auth/signup">Register</NuxtLink>
+            <li v-if="!user" class="w-full hover:bg-zinc-800 transition-colors">
+              <NuxtLink href="/auth/signup" class="w-full h-[50px] flex items-center justify-center">Register</NuxtLink>
             </li>
-            <li v-if="user" class="nav-item">
+            <li v-if="user" class="w-full hover:bg-zinc-800 transition-colors">
               <button @click="handleLogOut"
-                class="text-red-700 dark:text-red-300">Log Out</button>
+                class="w-full h-[50px] flex items-center justify-center">Log Out</button>
             </li>
           </ul>
         </nav>
-      </div>
     </div>
   </header>
 </template>
@@ -53,18 +51,3 @@ const handleLogOut = async () => {
   }
 }
 </script>
-
-<style scoped>
-nav ul li {
-  margin-right: 1em;
-}
-
-nav ul li:hover {
-  transform: scale(1.1);
-  transition: transform .2s;
-}
-
-nav ul li:last-child {
-  margin-right: 0;
-}
-</style>

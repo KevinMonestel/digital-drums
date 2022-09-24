@@ -1,6 +1,11 @@
 <template>
   <div class="flex justify-center">
     <div class="w-96 pt-10 md:pt-20">
+      <div class="mb-5 text-center">
+        <h1 class="text-xl">Sign in to your account.</h1>
+        <small class="text-md">Welcome.</small>
+      </div>
+
       <FormKit type="form" @submit="handleSignin" submit-label="Sign in">
         <FormKit type="email" name="email" label="Email address" help="Please enter your email address"
           validation="required" placeholder="example@example.com" />

@@ -1,6 +1,11 @@
 <template>
   <div class="flex justify-center">
     <div class="w-96 pt-10 md:pt-20">
+      <div class="mb-5 text-center">
+        <h1 class="text-xl">Recover your password.</h1>
+        <small class="text-md">Please, provide your email and we'll send you a message with a link to recover your password.</small>
+      </div>
+
       <FormKit type="form" @submit="handleRecover">
         <FormKit type="email" name="email" label="Email" help="Enter your email" placeholder="example@example.com"
           validation="required" />

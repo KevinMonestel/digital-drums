@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-[calc(100vh-70px)] container flex flex-col justify-center items-center">
+  <div class="h-screen flex flex-col justify-center items-center">
     <p v-if="user" class="mb-2">
       Welcome, <strong>{{user.email}}</strong> to
     </p>
@@ -17,5 +17,4 @@
 
 <script setup lang="ts">
 const user = useSupabaseUser()
-
 </script>
